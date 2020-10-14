@@ -55,11 +55,21 @@ function managePageEvents(){
 
 var lastMouseWheelInput = 0;
 var wheelSmoothing = false;
-function getSmoothScroll(e){
-  if (Math.abs(Math.abs(e.deltaY) - Math.abs(lastMouseWheelInput)) > 10 && e.deltaY == 0) {
+function getSmoothScroll(v){
+  if (Math.abs(Math.abs(v) - Math.abs(lastMouseWheelInput)) > 10 && v == 0) {
     wheelSmoothing = true;
+    setTimeout(doSmoothScroll, 100);
   }
-  return parseInt(e.deltaY);
+}
+
+function doSmoothScroll(){
+  console.log(lastMouseWheelInput);
+  lastMouseWheelInput -= 2;
+  lastMouseWheelInput = lastMouseWheelInput < 0 ? 0 : lastMouseWheelInput;
+  scroll(lastMouseWheelInput);
+  if (lastMouseWheelInput > 0) {
+    setTimeout(doSmoothScroll, 100);
+  }
 }
 
 function dynamicCSS(){ //.parentElement.clientHeight
@@ -67,13 +77,26 @@ function dynamicCSS(){ //.parentElement.clientHeight
   element.style.top = (element.clientHeight / 2) - (element.parentElement.clientHeight / 2) + 20 + "px";
 }
 
+// ========= BUTTONS ========
+
+function meetTheTeamShowMore(e){
+  if (e.innerText == "Show more") {
+    e.innerText = "Show less";
+    for (var i = 0; i < document.getElementsByClassName("content-content-flex-child-description").length; i++) {
+      document.getElementsByClassName("content-content-flex-child-description")[i].style.display = "block";
+    }
+  }else {
+    e.innerText = "Show more";
+    for (var i = 0; i < document.getElementsByClassName("content-content-flex-child-description").length; i++) {
+      document.getElementsByClassName("content-content-flex-child-description")[i].style.display = "none";
+    }
+  }
+  dynamicCSS();
+}
+
+// ========= EVENTS ========
 window.addEventListener("load", function (e) {
   dynamicCSS();
-  setInterval(function(){
-    if (wheelSmoothing) {
-
-    }
-  }, 100);
 });
 
 window.addEventListener("resize", function(){
@@ -81,13 +104,19 @@ window.addEventListener("resize", function(){
 });
 
 document.addEventListener("wheel", function (e) {
-  scrollValue -= getSmoothScroll(e);
+  var v = parseInt(e.deltaY);
+  getSmoothScroll(e.deltaY);
+  scroll(v);
+}, true);
+
+function scroll(v){
+  scrollValue -= v;
   scrollValue = scrollValue > 0 ? 0 : scrollValue;
 
   var setValue = managePageEvents();
 
   document.body.style.transform = "translateY(" + setValue + "px)";
-}, true);
+}
 
 window.addEventListener("beforeunload", function(){
   document.body.style.transform = "translateY(0px)";
