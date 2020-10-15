@@ -80,7 +80,7 @@ button {
 }
 
 .content-left {
-
+  margin-bottom: 70px;
 }
 
 .content-left table {
@@ -105,7 +105,7 @@ button {
 }
 
 .content-right {
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 }
 
 .content-right table {
@@ -132,7 +132,7 @@ button {
   justify-content: center;
 }
 
-.content-content-flex-child {
+.content-content-flex-child-MTT {
   width: 400px;
   background-color: #EEEEEE;
   margin: 20px;
@@ -165,4 +165,10 @@ button {
   font-size: 15px;
   text-align: justify;
   text-justify: inter-word;
+}
+
+.sponsor-image{
+  width: 300px;
+  margin: 20px;
+  height: auto;
 }

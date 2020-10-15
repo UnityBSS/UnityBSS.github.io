@@ -1,4 +1,6 @@
 var scrollValue = 0;
+var pageHeight = 0;
+var totalScrollValueHeight = 0;
 
 var pageEvents = [
   { //carZOOOM
@@ -53,13 +55,34 @@ function managePageEvents(){
   return setValue
 }
 
+function calculateTotalScrollValueHeight(){
+  /*
+  totalScrollValueHeight = pageHeight;
+  for (var i = 0; i < pageEvents.length; i++) {
+    var temp = 0;
+    temp += pageEvents[i].preBuffer;
+    temp += pageEvents[i].stop - pageEvents[i].start;
+    temp += pageEvents[i].postBuffer;
+    console.log(temp)
+  }
+  totalScrollValueHeight += temp;
+  */
+  totalScrollValueHeight = pageHeight - 320
+}
+
 var lastMouseWheelInput = 0;
 var wheelSmoothing = false;
 function getSmoothScroll(v){
+  //console.log(v);
   if (Math.abs(Math.abs(v) - Math.abs(lastMouseWheelInput)) > 10 && v == 0) {
+    console.log(true)
     wheelSmoothing = true;
     setTimeout(doSmoothScroll, 100);
   }
+  lastMouseWheelInput = v;
+  setTimeout(function(){
+
+  }, 50);
 }
 
 function doSmoothScroll(){
@@ -73,8 +96,14 @@ function doSmoothScroll(){
 }
 
 function dynamicCSS(){ //.parentElement.clientHeight
-  var element = document.getElementById("content-header-meetTheTeam");
-  element.style.top = (element.clientHeight / 2) - (element.parentElement.clientHeight / 2) + 20 + "px";
+  //page height
+  pageHeight = document.getElementById("bottom").getBoundingClientRect().y - document.getElementById("top").getBoundingClientRect().y;
+  //headers
+  for (var i = 0; i < document.getElementsByClassName("content-header-reposition").length; i++) {
+    var element = document.getElementsByClassName("content-header-reposition")[i];
+    element.style.top = (element.clientHeight / 2) - (element.parentElement.clientHeight / 2) + 20 + "px";
+  }
+  calculateTotalScrollValueHeight();
 }
 
 // ========= BUTTONS ========
@@ -112,6 +141,7 @@ document.addEventListener("wheel", function (e) {
 function scroll(v){
   scrollValue -= v;
   scrollValue = scrollValue > 0 ? 0 : scrollValue;
+  scrollValue = scrollValue < -totalScrollValueHeight ? -totalScrollValueHeight : scrollValue;
 
   var setValue = managePageEvents();
 
