@@ -89,6 +89,8 @@ button {
 
 .content-left h3 {
   position: relative;
+  height: 400px;
+  text-align: right;
   margin: 0px;
   writing-mode: vertical-lr;
   transform: rotate(180deg);
@@ -116,6 +118,8 @@ button {
 .content-right h3 {
   position: relative;
   margin: 0px;
+  height: 400px;
+  text-align: left;
   writing-mode: vertical-lr;
   color: black;
   font-size: 45px;
