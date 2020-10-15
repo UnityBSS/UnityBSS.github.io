@@ -39,7 +39,7 @@ function managePageEvents(){
       lastmoved = true;
       pageEvents[i].callBack( (scrollValue - pageEvents[i].start) / (pageEvents[i].stop - pageEvents[i].start) );
     }else {
-      if (lastmoved == true) {
+      if (pageEvents[i].lastmoved == true) {
         if (!pageEvents[i].repeatable) {
           pageEvents[i].hasPlayed = true;
         }
@@ -48,11 +48,28 @@ function managePageEvents(){
         }else {
           pageEvents[i].callBack(0);
         }
-        lastmoved = false;
+        pageEvents[i].lastmoved = false;
       }
     }
   }
   return setValue
+}
+
+function getScrollFromTranslation(translation) {
+  console.log(translation);
+  var offset = 0;
+  for (var i = 0; i < pageEvents.length; i++) {
+    if (translation == pageEvents[i].start + pageEvents[i].preBuffer) {
+      return pageEvents[i].start + pageEvents[i].preBuffer - offset;
+    }else if (translation < pageEvents[i].start[i] + pageEvents[i].preBuffer) {
+      offset += pageEvents[i].preBuffer;
+      offset += pageEvents[i].stop - pageEvents[i].start;
+      offset += pageEvents[i].postBuffer;
+    }else {
+      return translation - offset;
+    }
+  }
+  return translation - offset;
 }
 
 function calculateTotalScrollValueHeight(){
@@ -125,6 +142,8 @@ function meetTheTeamShowMore(e){
 
 // ========= EVENTS ========
 window.addEventListener("load", function (e) {
+  scrollValue = getScrollFromTranslation(document.getElementById("top").getBoundingClientRect().y);
+  console.log(scrollValue);
   dynamicCSS();
 });
 
