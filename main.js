@@ -39,7 +39,7 @@ function managePageEvents(){
       lastmoved = true;
       pageEvents[i].callBack( (scrollValue - pageEvents[i].start) / (pageEvents[i].stop - pageEvents[i].start) );
     }else {
-      if (pageEvents[i].lastmoved == true) {
+      if (lastmoved == true) {
         if (!pageEvents[i].repeatable) {
           pageEvents[i].hasPlayed = true;
         }
@@ -48,7 +48,7 @@ function managePageEvents(){
         }else {
           pageEvents[i].callBack(0);
         }
-        pageEvents[i].lastmoved = false;
+        lastmoved = false;
       }
     }
   }

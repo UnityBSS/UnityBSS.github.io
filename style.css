@@ -74,7 +74,7 @@ button {
 .content-header-left {
   width: 50px;
   padding: 20px 10px 20px 5px;
-  background-color: black;
+  background-color: #EEEEEE;
   border-right: 7px solid blue;
   text-align: left;
 }
@@ -92,14 +92,14 @@ button {
   margin: 0px;
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-  color: #EEEEEE;
+  color: black;
   font-size: 45px;
 }
 
 .content-header-right {
   width: 50px;
   padding: 20px 10px 20px 5px;
-  background-color: black;
+  background-color: #EEEEEE;
   border-left: 7px solid blue;
   text-align: left;
 }
@@ -108,7 +108,7 @@ button {
   margin-bottom: 70px;
 }
 
-.content-right table {
+.content-table {
   border-spacing: 0px;
   width: 100%;
 }
@@ -117,7 +117,7 @@ button {
   position: relative;
   margin: 0px;
   writing-mode: vertical-lr;
-  color: #EEEEEE;
+  color: black;
   font-size: 45px;
 }
 
@@ -165,6 +165,56 @@ button {
   font-size: 15px;
   text-align: justify;
   text-justify: inter-word;
+}
+
+.car-content-text {
+  width: 50%;
+}
+
+.car-content-image {
+  width: 50%;
+}
+
+.car-statistics-header {
+  margin-bottom: 8px;
+  font-size: 25px;
+  border-bottom: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to left, #1358cf, #214c99);
+  width: 110px;
+}
+
+.car-statistics-table {
+  width: 220px;
+  table-layout: fixed;
+  border-spacing: 0px;
+}
+
+.car-statistics-table-left {
+  font-size: 17px;
+  width: 160px;
+  padding: 5px 10px;
+  background-image: linear-gradient(to right, black, #4a4a4a, black);
+  color: #f1f1f1;
+}
+
+.car-statistics-table-middle {
+  width: 5px;
+  background-color: #0071bc;
+}
+
+.car-statistics-table-right {
+  width: 55px;
+  padding: 7px 10px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+#CarExploded {
+  width: 700px;
+  margin-left: 0px;
 }
 
 .sponsor-image{
