@@ -250,8 +250,12 @@ button {
   line-height: 25px;
 }
 
-.content-table-spacer {
+.car-display-small {
+  width: 400px;
+}
 
+.car-display-large {
+  width: 700px;
 }
 
 .sponsor-image{
