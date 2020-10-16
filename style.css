@@ -80,7 +80,7 @@ button {
 }
 
 .content-left {
-  margin-bottom: 70px;
+  margin-top: 120px;
 }
 
 .content-left table {
@@ -107,7 +107,7 @@ button {
 }
 
 .content-right {
-  margin-bottom: 70px;
+  margin-top: 120px;
 }
 
 .content-table {
@@ -169,10 +169,12 @@ button {
   font-size: 15px;
   text-align: justify;
   text-justify: inter-word;
+  line-height: 20px;
 }
 
 .car-content-text {
   width: 50%;
+  text-align: center;
 }
 
 .car-content-image {
@@ -219,6 +221,37 @@ button {
 #CarExploded {
   width: 700px;
   margin-left: 0px;
+}
+
+.tradeDisplay-content-image {
+  width: 50%;
+  align-content: center;
+  text-align: center;
+}
+
+.tradeDisplay-content-image image {
+  width: 500px;
+}
+
+.trade-display-frame-image {
+  width: 300px;
+  margin: 40px auto;
+}
+
+.trade-display-content-text {
+  width: 40%;
+  text-align: center;
+}
+
+.content-display-text {
+  max-width: 400px;
+  text-align: justify;
+  margin: 0px auto;
+  line-height: 25px;
+}
+
+.content-table-spacer {
+
 }
 
 .sponsor-image{
