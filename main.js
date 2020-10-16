@@ -56,7 +56,6 @@ function managePageEvents(){
 }
 
 function getScrollFromTranslation(translation) {
-  console.log(translation);
   var offset = 0;
   for (var i = 0; i < pageEvents.length; i++) {
     if (translation == pageEvents[i].start + pageEvents[i].preBuffer) {
@@ -92,7 +91,6 @@ var wheelSmoothing = false;
 function getSmoothScroll(v){
   //console.log(v);
   if (Math.abs(Math.abs(v) - Math.abs(lastMouseWheelInput)) > 10 && v == 0) {
-    console.log(true)
     wheelSmoothing = true;
     setTimeout(doSmoothScroll, 100);
   }
@@ -103,7 +101,6 @@ function getSmoothScroll(v){
 }
 
 function doSmoothScroll(){
-  console.log(lastMouseWheelInput);
   lastMouseWheelInput -= 2;
   lastMouseWheelInput = lastMouseWheelInput < 0 ? 0 : lastMouseWheelInput;
   scroll(lastMouseWheelInput);
@@ -143,7 +140,6 @@ function meetTheTeamShowMore(e){
 // ========= EVENTS ========
 window.addEventListener("load", function (e) {
   scrollValue = getScrollFromTranslation(document.getElementById("top").getBoundingClientRect().y);
-  console.log(scrollValue);
   dynamicCSS();
 });
 
